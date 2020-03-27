@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-String greetMe() => "Hello";
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,46 +23,96 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
-
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  _buildCustomCard() {
+    return Card(
+      child: Column(
+        children: <Widget>[
+          Icon(
+            Icons.phone_iphone,
+            color: Colors.black,
+            size: 100,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            'This is a dummy iPhone',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue,
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Boilerplate App'),
+        centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(25),
+        child: ListView(
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
+              'Hello and welcome here...',
               style: TextStyle(
-                color: Colors.red,
-                fontSize: 30
-              ),
+                  color: Colors.blueGrey,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
             ),
-            Icon(Icons.android, color: Colors.green,)
+            SizedBox(height: 20),
+            _buildCustomCard(),
+            SizedBox(
+              height: 20,
+            ),
+            RaisedButton(
+              color: Colors.red,
+              child: Text('Click here to see the magic'),
+              onPressed: () {
+                print('Magic button clicked');
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Image.asset(
+              'assets/images/programming.jpg',
+              height: 250,
+            ),
+            Image.asset(
+              'assets/images/programming.jpg',
+              height: 250,
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        child: Icon(Icons.add),
-      ), 
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+              margin: EdgeInsets.zero,
+              padding: EdgeInsets.zero,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage('assets/images/programming.jpg')
+                )
+              ),
+              child: Text('Hello John'),
+            ),
+            Text('Hi, John', style: TextStyle(
+              fontWeight: FontWeight.bold
+            ),)
+          ],
+        ),
+      ),
     );
   }
 }
