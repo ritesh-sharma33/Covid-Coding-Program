@@ -1,4 +1,6 @@
+import 'package:boilerplate_1/second_screen.dart';
 import 'package:flutter/material.dart';
+import 'replacement.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,6 +14,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: MyHomePage(title: 'Boilerplate App'),
+      routes: {
+        '/second': (context) => SecondScreen("Hello")
+      },
     );
   }
 }
@@ -49,6 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
@@ -76,7 +83,23 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.red,
               child: Text('Click here to see the magic'),
               onPressed: () {
-                print('Magic button clicked');
+                // Navigator.push(
+                //   context, 
+                //   MaterialPageRoute(
+                //     builder: (context) => SecondScreen("Hello there, welcome")
+                //   )
+                // );
+
+                // Navigator.pushNamed(context, '/second');
+
+                // Navigator.pushReplacementNamed(context, '/second');
+
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context) => SecondScreen('Hello')
+                  )
+                );
               },
             ),
             SizedBox(
@@ -84,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Image.asset(
               'assets/images/programming.jpg',
-              height: 250,
+              height: deviceHeight * 0.5,
             ),
             Image.asset(
               'assets/images/programming.jpg',
