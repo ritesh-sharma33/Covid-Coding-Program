@@ -17,7 +17,7 @@ class SecondScreen extends StatelessWidget {
       body: Container(
         child: Center(
           child: RaisedButton(
-            child: Text('Open Google'),
+            child: Text('Open Google in Chrome'),
             onPressed: _launchUrl
           )
         ),

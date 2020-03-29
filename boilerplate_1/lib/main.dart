@@ -1,6 +1,7 @@
 import 'package:boilerplate_1/second_screen.dart';
 import 'package:flutter/material.dart';
 import 'replacement.dart';
+import 'user_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           children: <Widget>[
             Text(
-              'Hello and welcome here...',
+              'Hello and welcome here, good morning...',
               style: TextStyle(
                   color: Colors.blueGrey,
                   fontSize: 25,
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context, 
                   MaterialPageRoute(
-                    builder: (context) => SecondScreen('Hello')
+                    builder: (context) => UserList()
                   )
                 );
               },
