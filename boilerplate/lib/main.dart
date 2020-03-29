@@ -1,3 +1,4 @@
+import 'package:boilerplate/rest-api.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -65,7 +66,12 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  print('Magic button pressed');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RestApi()
+                    )
+                  );
                 },
               ),
               SizedBox(
