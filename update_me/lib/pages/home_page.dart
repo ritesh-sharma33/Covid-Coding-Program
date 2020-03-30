@@ -5,6 +5,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:update_me/widgets/news_card.dart';
+import 'package:update_me/widgets/drawer_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -46,10 +47,18 @@ class _HomePageState extends State<HomePage> {
     final deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+        drawer: DrawerWidget(),
         appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.blueAccent
+          ),
           title: Text(
             "Update Me",
-            style: TextStyle(color: Colors.black, fontSize: 26, fontFamily: 'Baloo'),
+            style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 26,
+                fontFamily: 'Baloo',
+                fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           backgroundColor: Colors.white,

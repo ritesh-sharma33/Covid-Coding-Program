@@ -36,54 +36,72 @@ class _NewsCardState extends State<NewsCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    height: deviceHeight * 0.3,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(widget.post.image))),
-                  ),
-                  Container(
-                    height: deviceHeight * 0.3,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        gradient: LinearGradient(
-                            begin: FractionalOffset.bottomCenter,
-                            end: FractionalOffset.center,
-                            colors: [
-                              Colors.black.withOpacity(0.55),
-                              Colors.black.withOpacity(0.15)
-                            ],
-                            stops: [
-                              0.5,
-                              3.8
-                            ])),
-                    alignment: Alignment.bottomCenter,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
+              widget.post.image != null
+                  ? Stack(
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(
-                              top: deviceHeight * 0.125, left: 8.0, right: 8.0),
-                          child: Text(
-                            widget.post.title,
-                            style: TextStyle(
-                              height: 1.25,
-                              fontSize: deviceHeight * 0.03,
-                              fontWeight: FontWeight.bold,
+                        Container(
+                          height: deviceHeight * 0.3,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage(widget.post.image))),
+                        ),
+                        Container(
+                          height: deviceHeight * 0.3,
+                          decoration: BoxDecoration(
                               color: Colors.white,
-                            ),
+                              gradient: LinearGradient(
+                                  begin: FractionalOffset.bottomCenter,
+                                  end: FractionalOffset.center,
+                                  colors: [
+                                    Colors.black.withOpacity(0.55),
+                                    Colors.black.withOpacity(0.15)
+                                  ],
+                                  stops: [
+                                    0.5,
+                                    3.8
+                                  ])),
+                          alignment: Alignment.bottomCenter,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: deviceHeight * 0.125,
+                                    left: 8.0,
+                                    right: 8.0),
+                                child: Text(
+                                  widget.post.title,
+                                  style: TextStyle(
+                                    height: 1.25,
+                                    fontSize: deviceHeight * 0.031,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontFamily: 'Baloo'
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 4.0)
+                            ],
                           ),
                         )
                       ],
+                    )
+                  : Padding(
+                      padding: EdgeInsets.only(
+                          top: 5.0, left: 8.0, right: 8.0),
+                      child: Text(
+                        widget.post.title,
+                        style: TextStyle(
+                          height: 1.25,
+                          fontSize: deviceHeight * 0.03,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
-                  )
-                ],
-              ),
               SizedBox(
                 height: 5.0,
               ),
@@ -95,7 +113,10 @@ class _NewsCardState extends State<NewsCard> {
                       widget.post.name,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: deviceHeight * 0.029),
+                          fontSize: deviceHeight * 0.03,
+                          fontFamily: 'Baloo',
+                          color: Colors.blue
+                      ),
                     ),
                   ),
                   Spacer(),
@@ -104,8 +125,14 @@ class _NewsCardState extends State<NewsCard> {
                           padding: EdgeInsets.only(bottom: 5.0),
                           child: Chip(
                             backgroundColor: Colors.white,
-                            avatar: Icon(Icons.edit),
-                            label: Text(widget.post.author),
+                            avatar: Icon(Icons.edit, color: Colors.blue[800],),
+                            label: Text(
+                              widget.post.author,
+                              overflow: TextOverflow.fade,
+                              style: TextStyle(
+                                color: Colors.blueAccent
+                              ),
+                            ),
                           ))
                       : SizedBox()
                 ],
@@ -114,15 +141,20 @@ class _NewsCardState extends State<NewsCard> {
                 padding: EdgeInsets.only(left: 8.0, bottom: 8.0),
                 child: Text(widget.post.publishedAt),
               ),
+              widget.post.image != null ?
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   widget.post.description,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: deviceHeight * 0.02),
+                  style: TextStyle(
+                    fontSize: deviceHeight * 0.024,
+                    fontFamily: 'Baloo',
+                    height: 1,
+                  ),
                 ),
-              ),
+              ) : SizedBox(),
               SizedBox(
                 height: 10.0,
               ),
@@ -140,7 +172,9 @@ class _NewsCardState extends State<NewsCard> {
                     },
                   ),
                   IconButton(
-                    icon: this.isBookmarked ? Icon(Icons.bookmark) : Icon(Icons.bookmark_border),
+                    icon: this.isBookmarked
+                        ? Icon(Icons.bookmark)
+                        : Icon(Icons.bookmark_border),
                     onPressed: () {
                       setState(() {
                         this.isBookmarked = !this.isBookmarked;
