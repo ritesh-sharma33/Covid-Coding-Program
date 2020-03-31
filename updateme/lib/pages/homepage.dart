@@ -4,6 +4,7 @@ import "package:http/http.dart" as http;
 import 'dart:convert';
 
 import 'package:updateme/models/post.dart';
+import 'package:updateme/widgets/drawerwidget.dart';
 import 'package:updateme/widgets/newscard.dart';
 
 class HomePage extends StatefulWidget {
@@ -45,8 +46,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerWidget(),
       appBar: AppBar(
-        title: Text("Update Me"),
+        title: Text("Update Me", style: TextStyle(fontFamily: 'Baloo', fontWeight: FontWeight.bold, fontSize: 25),),
         centerTitle: true,
       ),
       body: RefreshIndicator(

@@ -65,7 +65,8 @@ class _NewsCardState extends State<NewsCard> {
                                 height: 1.25,
                                 fontSize: deviceHeight * 0.03,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                                color: Colors.white,
+                                fontFamily: "Baloo"),
                           ),
                         ),
                       ),
@@ -91,7 +92,8 @@ class _NewsCardState extends State<NewsCard> {
                     widget.post.name,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: deviceHeight * 0.029
+                      fontSize: deviceHeight * 0.029,
+                      color: Colors.blue[400]
                     ),
                   ),
                 ),
@@ -102,8 +104,8 @@ class _NewsCardState extends State<NewsCard> {
                   padding: EdgeInsets.only(bottom: 5.0),
                   child: Chip(
                     backgroundColor: Colors.white,
-                    avatar: Icon(Icons.edit),
-                    label: Text(widget.post.author),
+                    avatar: Icon(Icons.edit, color: Colors.blue[800],),
+                    label: Text(widget.post.author, style: TextStyle(color: Colors.blue[400]),),
                   ),
                 )
                 : SizedBox()
